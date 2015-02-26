@@ -1,0 +1,9 @@
+body {
+    background-color: ghostwhite;
+}
+
+.mermaid {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+}

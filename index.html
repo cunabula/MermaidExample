@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test Mermaid</title>
+    <script src="js/mermaid.full.js"></script>
+    <link rel="stylesheet" href="style/mermaid.css">
+</head>
+<body>
+
+<div class="mermaid">
+    graph TD
+    new[New User] --> ssrf{SSRF submitted?}
+    ssrf --> |yes| active_d{Created in AD?}
+    ssrf --> |no| mgr_ssrf(Have mgr <br>submit SSRF)
+    mgr_ssrf --> active_d
+    active_d --> |yes| groups{In proper groups?}
+    active_d --> |no| create_active_d(Create user<br>in AD)
+    create_active_d --> groups
+    groups --> |yes| exchange{Mailbox setup?}
+
+    exchange --> |yes| vmail{Vmail needed?}
+    exchange --> |no| create_exchange(Have SysAdmins<br>setup mailbox)
+    create_exchange --> vmail
+    vmail --> |yes| vmail_setup{Vmail setup?}
+    vmail --> |no| done[Done]
+    vmail_setup --> |yes| done
+    vmail_setup --> |no| create_vmail(Have SecNet<br>setup Vmail)
+    create_vmail --> done
+
+    classDef green fill:#52c56b,stroke:#000,stroke-width:3px;
+    classDef blue fill:#50b9ba,stroke:#000,stroke-width:3px;
+
+    class new,mgr_ssrf,create_active_d,create_exchange,create_vmail,done green
+    class ssrf,active_d,groups,exchange,vmail,vmail_setup blue
+</div>
+
+<div class="mermaid" id="mermaidChart0">
+    <svg>
+    </svg>
+</div>
+
+</body>
+</html>
